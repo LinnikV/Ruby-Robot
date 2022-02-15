@@ -1,18 +1,19 @@
 $x = nil
 $y = nil
-$f = 0
+$f = nil
 
 def check?(x, y)
 
   case x
-  when 0..4 then return true
+  when (0..4)
   else return false
   end
 
   case y
-  when 0..5 then return  true
+  when (0..5)
   else return false
   end
+  return true
 end
 
 def place(x, y, f)
@@ -24,47 +25,36 @@ def place(x, y, f)
 end
 
 def move
-  if check?($x,$y)
+  if check?($x, $y)
   case $f
-  when :north
-    $y += 1
-  when :east
-    $x += 1
-  when :south
-    $Y -= 1
-  when :west
-    $x -= 1
+  when :north then $y += 1
+  when :east then $x += 1
+  when :south then $y -= 1
+  when :west then $x -= 1
   end
   end
-
 end
 
 def right
+  if check?($x ,$y)
   case $f
-  when :north
-    $f = :east
-  when :east
-    $f = :south
-  when :south
-    $f = :west
-  when :west
-    $f = :north
+  when :north then $f = :east
+  when :east then $f = :south
+  when :south then $f = :west
+  when :west then $f = :north
+  end
   end
 end
 
 def left
-
+  if check?($x,$y)
   case $f
-  when :north
-  $f = :west
-  when :west
-  $f = :south
-  when :south
-  $f = :east
-  when :east
-  $f = :north
+  when :north then $f = :west
+  when :west then $f = :south
+  when :south then $f = :east
+  when :east then $f = :north
   end
-
+  end
 end
 
 def report
@@ -74,15 +64,10 @@ def report
 
 end
 
-place(4,4,:east)
+place(0,0,:east)
 report
-move
-report
-move
-report
-move
-report
-
+left
+left
 move
 report
 
