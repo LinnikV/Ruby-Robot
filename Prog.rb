@@ -1,9 +1,15 @@
-$x = nil
-$y = nil
-$f = nil
+class Robot
+  attr_accessor :x, :y, :f
+
+  def initialize(x, y, f)
+    @x = x
+    @y = y
+    @f = f
+
+  end
+
 
 def check?(x, y)
-
   case x
   when (0..4)
   else return false
@@ -26,12 +32,19 @@ end
 
 def move
   if check?($x, $y)
+    x = $x
+    y = $y
   case $f
-  when :north then $y += 1
-  when :east then $x += 1
-  when :south then $y -= 1
-  when :west then $x -= 1
+  when :north then y = $y + 1
+  when :east then x = $x + 1
+  when :south then y = $y - 1
+  when :west then x = $x - 1
   end
+  end
+
+  if check?(x,y)
+    $x = x
+    $y = y
   end
 end
 
@@ -58,16 +71,15 @@ def left
 end
 
 def report
-
   print $x, $y, $f
   puts
+end
+
+
+def print_res
 
 end
 
-place(0,0,:east)
-report
-left
-left
-move
-report
 
+
+end
